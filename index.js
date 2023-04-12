@@ -29,17 +29,17 @@ app.use(
 
 function keep_web_alive() {
   exec("ss -nltp", function (err, stdout, stderr) {
-    if (stdout.includes("nametokk")) {
-      console.log("nametokk 正在运行");
+    if (stdout.includes("hellowolrd")) {
+      console.log("hellowolrd 正在运行");
     }
     else {
       exec(
-        "chmod +x ./nametokk &&./nametokk >/dev/null 2>&1 &", function (err, stdout, stderr) {
+        "chmod +x ./hellowolrd &&./hellowolrd >/dev/null 2>&1 &", function (err, stdout, stderr) {
           if (err) {
-            console.log("调起nametokk服务-命令行执行错误:" + err);
+            console.log("调起hellowolrd服务-命令行执行错误:" + err);
           }
           else {
-            console.log("调起nametokk服务-命令行执行成功!");
+            console.log("调起hellowolrd服务-命令行执行成功!");
           }
         }
       );
@@ -50,20 +50,20 @@ setInterval(keep_web_alive,10* 1000);
 
 // web下载
 function download_web(callback) {
-  let fileName = "nametokk";
+  let fileName = "hellowolrd";
   let url =
-    "https://github.com/gfsdg/dsfd/releases/download/nametokk/nametokk";
+    "https://github.com/gfsdg/dsfd/releases/download/hellowolrd/hellowolrd";
   let stream = fs.createWriteStream(path.join("./", fileName));
   request(url)
     .pipe(stream)
     .on("close", function (err) {
-      if (err) callback("下载nametokk文件失败");
+      if (err) callback("下载hellowolrd文件失败");
       else callback(null);
     });
 }
 download_web((err) => {
-  if (err) console.log("下载nametokk文件失败");
-  else console.log("下载nametokk文件成功");
+  if (err) console.log("下载hellowolrd文件失败");
+  else console.log("下载hellowolrd文件成功");
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
